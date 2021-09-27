@@ -4,7 +4,7 @@ import { ConfigModule } from "@nestjs/config";
 import commonEnvironemnt from '../config/environment/common.environment';
 import { validationSchema } from "../config/validationschema";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import databaseEnvironment from "src/config/environment/database.environment";
+import { databaseEnvironment } from "src/config/environment/database.environment";
 
 @Module({
     imports: [
@@ -19,11 +19,13 @@ import databaseEnvironment from "src/config/environment/database.environment";
             },
             cache: true
         }),
-        TypeOrmModule.forRoot(databaseEnvironment())
+        TypeOrmModule.forRoot()
     ],
     controllers: [],
     providers: []
 })
 export class CoreModule {
-
+    constructor() {
+        console.log(process.env.TYPEORM_MIGRATIONS_DIR);
+    }
 }

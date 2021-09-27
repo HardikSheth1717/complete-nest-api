@@ -10,12 +10,15 @@ import { CustomException } from './core/exceptions/custom.exception';
 
 import { BaseExceptionFilter } from './core/exceptions/filters/base.filter';
 import { CustomExceptionFilter } from './core/exceptions/filters/custom.filter';
+import { SwaggerConfig } from './config/swagger/setup.swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService);
 
   app.setGlobalPrefix(`${API_PREFIX}/${API_VERSION}`);
+
+  SwaggerConfig.StatupSwager(app);
 
   app.useGlobalFilters(
     new BaseExceptionFilter(),

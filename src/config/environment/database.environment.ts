@@ -1,61 +1,22 @@
 import { ConnectionOptions } from "typeorm";
 
-function databaseEnvironment(): any {
+export function databaseEnvironment(): any {
     return {
-        type: "mysql",
-        host: process.env.DATABASE_HOST,
-        port: parseInt(process.env.DATABASE_PORT),
-        database: process.env.DATABASE_NAME,
-        username: process.env.DATABASE_USER,
-        password: process.env.DATABASE_PASSWORD,
-        synchronize: process.env.MIGRATION_TYPE === 'SYNC',
-        dropSchema: process.env.MIGRATION_TYPE === 'SYNC',
-        migrationsRun: !(process.env.MIGRATION_TYPE === 'SYNC'),
-        logging: false,
-        connectTimeout: parseInt(process.env.DATABASE_CONNECTION_TIMEOUT),
-        entities: process.env.NODE_ENV === 'production' ? [
-            "dist/**/entity/*.entity.js"
-        ] : [
-            "src/**/entity/*.entity.ts"
-        ],
-        migrationsTableName: "migration_logs",
-        migrations: process.env.NODE_ENV === 'production' ? [
-            "dist/database/migrations/*.js"
-        ] : [
-            "src/database/migrations/*.ts"
-        ],
+        type: process.env.TYPEORM_CONNECTION,
+        host: process.env.TYPEORM_HOST,
+        port: parseInt(process.env.TYPEORM_PORT),
+        database: process.env.TYPEORM_DATABASE,
+        username: process.env.TYPEORM_USERNAME,
+        password: process.env.TYPEORM_PASSWORD,
+        synchronize: process.env.TYPEORM_SYNCHRONIZE,
+        dropSchema: process.env.TYPEORM_DROP_SCHEMA,
+        migrationsRun: process.env.TYPEORM_MIGRATIONS_RUN,
+        logging: process.env.TYPEORM_LOGGING,
+        entities: process.env.TYPEORM_ENTITIES,
+        migrationsTableName: process.env.TYPEORM_MIGRATIONS_TABLE_NAME,
+        migrations: process.env.TYPEORM_MIGRATIONS,
         cli: {
-            migrationsDir: "src/database/migrations"
+            migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR
         }
     }
 }
-
-const ormConfig: ConnectionOptions = {
-    type: "mysql",
-    host: process.env.DATABASE_HOST,
-    port: parseInt(process.env.DATABASE_PORT),
-    database: process.env.DATABASE_NAME,
-    username: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    synchronize: process.env.MIGRATION_TYPE === 'SYNC',
-    dropSchema: process.env.MIGRATION_TYPE === 'SYNC',
-    migrationsRun: !(process.env.MIGRATION_TYPE === 'SYNC'),
-    logging: false,
-    connectTimeout: parseInt(process.env.DATABASE_CONNECTION_TIMEOUT),
-    entities: process.env.NODE_ENV === 'production' ? [
-        "dist/**/entity/*.entity.js"
-    ] : [
-        "src/**/entity/*.entity.ts"
-    ],
-    migrationsTableName: "migration_logs",
-    migrations: process.env.NODE_ENV === 'production' ? [
-        "dist/database/migrations/*.js"
-    ] : [
-        "src/database/migrations/*.ts"
-    ],
-    cli: {
-        migrationsDir: "src/database/migrations"
-    }
-}
-
-export = databaseEnvironment;
