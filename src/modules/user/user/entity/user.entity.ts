@@ -1,4 +1,5 @@
-import { Column, Entity } from "typeorm";
+import { BeforeInsert, Column, Entity } from "typeorm";
+import { hashSync, genSaltSync } from 'bcrypt';
 
 @Entity()
 export class User {
@@ -30,12 +31,12 @@ export class User {
 
     @Column({
         type: 'varchar',
-        length: 20,
-        comment: 'Unique username / Mobile to login into the system.',
+        length: 10,
+        comment: 'Unique Mobile to login into the system.',
         nullable: false,
         unique: true
     })
-    UserName: string;
+    Mobile: string;
 
     @Column({
         type: 'varchar',
@@ -50,7 +51,7 @@ export class User {
         type: 'varbinary',
         length: 128,
         comment: 'Password.',
-        nullable: true
+        nullable: false
     })
     Password: string;
 
@@ -59,7 +60,7 @@ export class User {
         comment: 'User is active or not.',
         nullable: false
     })
-    IsActive: string;
+    IsActive: boolean;
 
     @Column({
         type: 'varchar',
@@ -74,7 +75,7 @@ export class User {
         comment: 'User is system generated or not.',
         nullable: false
     })
-    IsSystem: string;
+    IsSystem: boolean;
 
     @Column({
         type: 'int',
@@ -110,4 +111,9 @@ export class User {
         nullable: false
     })
     CompanyId: number;
+
+    @BeforeInsert()
+    async hashPassword() {
+        this.Password = hashSync(this.Password, genSaltSync(10));
+    }
 }
