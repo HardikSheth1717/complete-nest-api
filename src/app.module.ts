@@ -8,8 +8,6 @@ import { AppService } from './app.service';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './modules/user/user/user.module';
 
-import { CustomExceptionFilter } from './core/exceptions/filters/custom.filter';
-
 @Module({
   imports: [CoreModule, UserModule],
   controllers: [AppController],
