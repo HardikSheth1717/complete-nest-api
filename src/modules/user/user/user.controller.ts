@@ -1,18 +1,17 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Inject } from '@nestjs/common';
 
-import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
+import { UserServiceInterface } from './interface/user.service.interface';
 
 @Controller('user')
 export class UserController {
     constructor(
-        private readonly userService: UserService
-    ) {
-
-    }
+        @Inject('UserServiceInterface')
+        private readonly userService: UserServiceInterface
+    ) { }
 
     @Post()
     public async createUser(@Body() user: UserDto) : Promise<UserDto> {
-        return this.userService.createUser(user);
+        return await this.userService.createUser(user);
     }
 }
