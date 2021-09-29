@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { User } from './entity/user.entity';
 import { UserDto } from './dto/user.dto';
-import { UserRepositoryInterface } from './interface/user.repository.interface';
+import { PersonRepositoryInterface } from './interface/user.repository.interface';
 import { UserServiceInterface } from './interface/user.service.interface';
 
 @Injectable()
 export class UserService implements UserServiceInterface {
     constructor(
-        @Inject('UserRepositoryInterface')
-        private readonly userRepository: UserRepositoryInterface
+        @Inject('PersonRepositoryInterface')
+        private readonly userRepository: PersonRepositoryInterface
     ) {}
 
     async createUser(user: UserDto) : Promise<UserDto> {

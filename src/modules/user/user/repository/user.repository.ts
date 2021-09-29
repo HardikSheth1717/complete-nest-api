@@ -3,12 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { BaseAbstractRepository } from '../../../../core/repositories/base/base.abstract.repository';
-import { UserRepositoryInterface } from '../interface/user.repository.interface';
+import { PersonRepositoryInterface } from '../interface/user.repository.interface';
 
 import { User } from '../entity/user.entity';
 
 @Injectable()
-export class UserRepository extends BaseAbstractRepository<User> implements UserRepositoryInterface {
+export class PersonRepository extends BaseAbstractRepository<User> implements PersonRepositoryInterface {
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>
