@@ -10,6 +10,15 @@ export class UserService implements UserServiceInterface {
         @Inject('PersonRepositoryInterface')
         private readonly userRepository: PersonRepositoryInterface
     ) {}
+    
+    findUserByUserName(username: string): Promise<UserDto> {
+        const userEntities: Promise<User[]> =  this.userRepository.filter({
+            UserName: username
+        });
+
+        const users: Promise<UserDto[]> = <Promise<UserDto[]>>userEntities;
+        return users[0];
+    }
 
     async createUser(user: UserDto) : Promise<UserDto> {
         const userEntity: User = new User();
