@@ -10,7 +10,7 @@ This project demonstrate following things:
 <li>TypeORM</li>
 <li>TypeORM Migration</li>
 <li>Repository Pattern</li>
-<li>Loosly coupled and maintainable application</li>
+<li>Loosely coupled and maintainable application</li>
 <li>Authentication and JWT implementation using Passport</li>
 <li>Guards</li>
 </ul>
