@@ -32,7 +32,7 @@ export class AuthService implements AuthServiceInterface {
             username: user.Mobile,
             sub: user.UserId
         };
-        console.log(payload);
+        
         return {
             access_token: this.jwtService.sign(payload)
         }
