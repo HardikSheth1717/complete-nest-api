@@ -26,6 +26,6 @@ import { databaseEnvironment } from "src/config/environment/database.environment
 })
 export class CoreModule {
     constructor() {
-        console.log(process.env.TYPEORM_MIGRATIONS_DIR);
+        
     }
 }

@@ -18,6 +18,15 @@ import { UserService } from './user.service';
     }
   ],
   controllers: [UserController],
-  exports: [UserService]
+  exports: [
+    TypeOrmModule,
+    {
+      provide: 'PersonRepositoryInterface',
+      useClass: PersonRepository,
+    }, {
+      provide: 'UserServiceInterface',
+      useClass: UserService
+    }
+]
 })
-export class UserModule {}
+export class UserModule { }
