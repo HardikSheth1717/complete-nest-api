@@ -14,3 +14,5 @@ This project demonstrate following things:
 <li>Authentication and JWT implementation using Passport</li>
 <li>Guards</li>
 </ul>
+
+### Thanks to @phatvo21 for his valuable suggestions and code refactoring
