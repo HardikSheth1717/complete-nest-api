@@ -10,6 +10,8 @@ import { LocalStrategy } from './strategy/local.strategy';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { jwtConstants } from '../../constant/constant';
 import { AuthController } from './auth.controller';
+import { USERSERVICETOKEN } from '../user/user/interface/user.service.interface';
+import { AUTHSERVICETOKEN } from './interface/auth.service.interface';
 
 @Module({
   imports: [
@@ -25,17 +27,17 @@ import { AuthController } from './auth.controller';
     LocalStrategy,
     JwtStrategy,
     {
-      provide: 'AuthServiceInterface',
+      provide: AUTHSERVICETOKEN,
       useClass: AuthService,
     },
     {
-      provide: 'UserServiceInterface',
+      provide: USERSERVICETOKEN,
       useClass: UserService,
     },
   ],
   exports: [
     {
-      provide: 'AuthServiceInterface',
+      provide: AUTHSERVICETOKEN,
       useClass: AuthService,
     },
   ],

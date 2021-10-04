@@ -8,11 +8,11 @@ import {
 } from '@nestjs/common';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { AuthServiceInterface } from './interface/auth.service.interface';
+import { AuthServiceInterface, AUTHSERVICETOKEN } from './interface/auth.service.interface';
 @Controller('auth')
 export class AuthController {
   constructor(
-    @Inject('AuthServiceInterface')
+    @Inject(AUTHSERVICETOKEN)
     private readonly authService: AuthServiceInterface,
   ) {}
 

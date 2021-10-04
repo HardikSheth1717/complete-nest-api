@@ -1,12 +1,12 @@
 import { Controller, Post, Body, Inject } from '@nestjs/common';
 
 import { UserDto } from './dto/user.dto';
-import { UserServiceInterface } from './interface/user.service.interface';
+import { UserServiceInterface, USERSERVICETOKEN } from './interface/user.service.interface';
 
 @Controller('user')
 export class UserController {
   constructor(
-    @Inject('UserServiceInterface')
+    @Inject(USERSERVICETOKEN)
     private readonly userService: UserServiceInterface,
   ) {}
 

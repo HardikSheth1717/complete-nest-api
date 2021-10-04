@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { User } from './entity/user.entity';
 import { UserDto } from './dto/user.dto';
-import { PersonRepositoryInterface } from './interface/user.repository.interface';
+import { PersonRepositoryInterface, PERSONREPOSITORYTOKEN } from './interface/user.repository.interface';
 import { UserServiceInterface } from './interface/user.service.interface';
 
 @Injectable()
 export class UserService implements UserServiceInterface {
   constructor(
-    @Inject('PersonRepositoryInterface')
+    @Inject(PERSONREPOSITORYTOKEN)
     private readonly userRepository: PersonRepositoryInterface,
   ) {}
 

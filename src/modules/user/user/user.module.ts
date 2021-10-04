@@ -4,16 +4,18 @@ import { User } from './entity/user.entity';
 import { UserController } from './user.controller';
 import { PersonRepository } from './repository/user.repository';
 import { UserService } from './user.service';
+import { PERSONREPOSITORYTOKEN } from './interface/user.repository.interface';
+import { USERSERVICETOKEN } from './interface/user.service.interface';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
   providers: [
     {
-      provide: 'PersonRepositoryInterface',
+      provide: PERSONREPOSITORYTOKEN,
       useClass: PersonRepository,
     },
     {
-      provide: 'UserServiceInterface',
+      provide: USERSERVICETOKEN,
       useClass: UserService,
     },
   ],
@@ -21,11 +23,11 @@ import { UserService } from './user.service';
   exports: [
     TypeOrmModule,
     {
-      provide: 'PersonRepositoryInterface',
+      provide: PERSONREPOSITORYTOKEN,
       useClass: PersonRepository,
     },
     {
-      provide: 'UserServiceInterface',
+      provide: USERSERVICETOKEN,
       useClass: UserService,
     },
   ],
