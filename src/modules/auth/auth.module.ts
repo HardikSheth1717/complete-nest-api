@@ -12,32 +12,32 @@ import { jwtConstants } from '../../constant/constant';
 import { AuthController } from './auth.controller';
 
 @Module({
-    imports: [
-        UserModule,
-        PassportModule,
-        JwtModule.register({
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: '60s' }
-        })
-    ],
-    controllers: [AuthController],
-    providers: [
-        LocalStrategy,
-        JwtStrategy,
-        {
-            provide: 'AuthServiceInterface',
-            useClass: AuthService
-        },
-        {
-            provide: 'UserServiceInterface',
-            useClass: UserService
-        }
-    ],
-    exports: [{
-        provide: 'AuthServiceInterface',
-        useClass: AuthService
-    }]
+  imports: [
+    UserModule,
+    PassportModule,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [
+    LocalStrategy,
+    JwtStrategy,
+    {
+      provide: 'AuthServiceInterface',
+      useClass: AuthService,
+    },
+    {
+      provide: 'UserServiceInterface',
+      useClass: UserService,
+    },
+  ],
+  exports: [
+    {
+      provide: 'AuthServiceInterface',
+      useClass: AuthService,
+    },
+  ],
 })
-export class AuthModule {
-
-}
+export class AuthModule {}

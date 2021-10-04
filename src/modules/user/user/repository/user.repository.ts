@@ -8,11 +8,14 @@ import { PersonRepositoryInterface } from '../interface/user.repository.interfac
 import { User } from '../entity/user.entity';
 
 @Injectable()
-export class PersonRepository extends BaseAbstractRepository<User> implements PersonRepositoryInterface {
-    constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>
-    ) {
-        super(userRepository);
-    }
+export class PersonRepository
+  extends BaseAbstractRepository<User>
+  implements PersonRepositoryInterface
+{
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {
+    super(userRepository);
+  }
 }

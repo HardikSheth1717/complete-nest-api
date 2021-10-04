@@ -2,10 +2,10 @@ import { Controller, Post, Body, Inject } from '@nestjs/common';
 
 @Controller('role')
 export class RoleController {
-    constructor() { }
+  constructor() {}
 
-    @Post()
-    public async createUser() : Promise<any> {
-        return 'Hello';
-    }
+  @Post()
+  public async createUser(): Promise<any> {
+    return 'Hello';
+  }
 }

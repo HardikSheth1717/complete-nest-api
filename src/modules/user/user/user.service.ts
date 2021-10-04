@@ -6,39 +6,43 @@ import { UserServiceInterface } from './interface/user.service.interface';
 
 @Injectable()
 export class UserService implements UserServiceInterface {
-    constructor(
-        @Inject('PersonRepositoryInterface')
-        private readonly userRepository: PersonRepositoryInterface
-    ) {}
-    
-    findUserByUserName(username: string): Promise<UserDto[]> {
-        const userEntities: Promise<User[]> = this.userRepository.filter({
-            Mobile: username
-        });
-        
-        const users: Promise<UserDto[]> = <Promise<UserDto[]>>userEntities;
+  constructor(
+    @Inject('PersonRepositoryInterface')
+    private readonly userRepository: PersonRepositoryInterface,
+  ) {}
 
-        return users;
-    }
+  findUserByUserName(username: string): Promise<UserDto> {
+    const userEntities: Promise<User> = this.userRepository.findByCondition({
+      where: {
+        mobile: username,
+      },
+    });
 
-    async createUser(user: UserDto) : Promise<UserDto> {
-        const userEntity: User = new User();
-        userEntity.UserId = user.UserId;
-        userEntity.FirstName = user.FirstName;
-        userEntity.LastName = user.LastName;
-        userEntity.Email = user.Email;
-        userEntity.Mobile = user.Mobile;
-        userEntity.Password = user.Password;
-        userEntity.IsActive = user.IsActive;
-        userEntity.IsSystem = user.IsSystem;
-        userEntity.ProfileImage = user.ProfileImage;
-        userEntity.CreatedBy = user.CreatedBy;
-        userEntity.CreatedDate = user.CreatedDate;
-        userEntity.ModifiedBy = user.ModifiedBy;
-        userEntity.ModifiedDate = user.ModifiedDate;
-        userEntity.CompanyId = user.CompanyId;
+    const user: Promise<UserDto> = <Promise<UserDto>>userEntities;
 
-        const userResult: Promise<UserDto> = <Promise<UserDto>>this.userRepository.save(userEntity);
-        return userResult;
-    }
+    return user;
+  }
+
+  async createUser(user: UserDto): Promise<UserDto> {
+    const userEntity: User = new User();
+    userEntity.userId = user.userId;
+    userEntity.firstName = user.firstName;
+    userEntity.lastName = user.lastName;
+    userEntity.email = user.email;
+    userEntity.mobile = user.mobile;
+    userEntity.password = user.password;
+    userEntity.isActive = user.isActive;
+    userEntity.isSystem = user.isSystem;
+    userEntity.profileImage = user.profileImage;
+    userEntity.createdBy = user.createdBy;
+    userEntity.createdDate = user.createdDate;
+    userEntity.modifiedBy = user.modifiedBy;
+    userEntity.modifiedDate = user.modifiedDate;
+    userEntity.companyId = user.companyId;
+
+    const userResult: Promise<UserDto> = <Promise<UserDto>>(
+      this.userRepository.save(userEntity)
+    );
+    return userResult;
+  }
 }

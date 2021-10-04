@@ -2,7 +2,7 @@ import { ValidationError, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
-import "reflect-metadata";
+import 'reflect-metadata';
 
 import { API_PREFIX, API_VERSION } from './constant/constant';
 import { AppModule } from './app.module';
@@ -10,7 +10,7 @@ import { CustomException } from './core/exceptions/custom.exception';
 
 import { BaseExceptionFilter } from './core/exceptions/filters/base.filter';
 import { CustomExceptionFilter } from './core/exceptions/filters/custom.filter';
-import { SwaggerConfig } from './config/swagger/setup.swagger';
+import { setupSwagger } from './config/swagger/setup.swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,12 +18,9 @@ async function bootstrap() {
 
   app.setGlobalPrefix(`${API_PREFIX}/${API_VERSION}`);
 
-  SwaggerConfig.StatupSwager(app);
+  setupSwagger(app);
 
-  app.useGlobalFilters(
-    new BaseExceptionFilter(),
-    new CustomExceptionFilter()
-  );
+  app.useGlobalFilters(new BaseExceptionFilter(), new CustomExceptionFilter());
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -31,9 +28,10 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
-      exceptionFactory: (errors: ValidationError[]) => new CustomException(errors)
-    })
-  )
+      exceptionFactory: (errors: ValidationError[]) =>
+        new CustomException(errors),
+    }),
+  );
 
   await app.listen(config.get('commonEnv.port'));
 }

@@ -5,13 +5,13 @@ import { UserServiceInterface } from './interface/user.service.interface';
 
 @Controller('user')
 export class UserController {
-    constructor(
-        @Inject('UserServiceInterface')
-        private readonly userService: UserServiceInterface
-    ) { }
+  constructor(
+    @Inject('UserServiceInterface')
+    private readonly userService: UserServiceInterface,
+  ) {}
 
-    @Post()
-    public async createUser(@Body() user: UserDto) : Promise<UserDto> {
-        return await this.userService.createUser(user);
-    }
+  @Post()
+  public createUser(@Body() user: UserDto): Promise<UserDto> {
+    return this.userService.createUser(user);
+  }
 }

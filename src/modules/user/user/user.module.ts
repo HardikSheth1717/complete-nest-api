@@ -15,7 +15,7 @@ import { UserService } from './user.service';
     {
       provide: 'UserServiceInterface',
       useClass: UserService,
-    }
+    },
   ],
   controllers: [UserController],
   exports: [
@@ -23,10 +23,11 @@ import { UserService } from './user.service';
     {
       provide: 'PersonRepositoryInterface',
       useClass: PersonRepository,
-    }, {
+    },
+    {
       provide: 'UserServiceInterface',
-      useClass: UserService
-    }
-]
+      useClass: UserService,
+    },
+  ],
 })
-export class UserModule { }
+export class UserModule {}
