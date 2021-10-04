@@ -4,12 +4,12 @@ import { NestFactory } from '@nestjs/core';
 
 import 'reflect-metadata';
 
-import { API_PREFIX, API_VERSION } from './constant/constant';
+import { API_PREFIX, API_VERSION } from '@constant/constant';
 import { AppModule } from './app.module';
-import { CustomException } from './core/exceptions/custom.exception';
+import { CustomException } from '@core/exceptions/custom.exception';
 
-import { BaseExceptionFilter } from './core/exceptions/filters/base.filter';
-import { CustomExceptionFilter } from './core/exceptions/filters/custom.filter';
+import { BaseExceptionFilter } from '@core/exceptions/filters/base.filter';
+import { CustomExceptionFilter } from '@core/exceptions/filters/custom.filter';
 import { setupSwagger } from './config/swagger/setup.swagger';
 
 async function bootstrap() {

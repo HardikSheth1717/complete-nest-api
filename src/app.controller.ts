@@ -9,7 +9,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { GetIdDto } from './core/dto/getId.dto';
+import { GetIdDto } from '@core/dto/getId.dto';
 
 @Controller('app')
 export class AppController {
