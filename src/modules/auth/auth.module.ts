@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthService } from './auth.service';
 import { LocalStrategy } from './strategy/local.strategy';
 import { JwtStrategy } from './strategy/jwt.strategy';
-import { jwtConstants } from '../../constant/constant';
 import { AuthController } from './auth.controller';
 import { AUTHSERVICETOKEN } from './interface/auth.service.interface';
 
@@ -15,7 +14,7 @@ import { AUTHSERVICETOKEN } from './interface/auth.service.interface';
     SharedModule,
     PassportModule,
     JwtModule.register({
-      secret: jwtConstants.secret,
+      secret: process.env.JWT_SECTRET_KEY,
       signOptions: { expiresIn: '60s' },
     }),
   ],
