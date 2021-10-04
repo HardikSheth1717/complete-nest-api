@@ -17,7 +17,6 @@ export class AuthService implements AuthServiceInterface {
   async getUser(username: string, password: string): Promise<UserDto> {
     const user = await this.userService.findUserByUserName(username);
     if (user) {
-      console.log(user.password, password);
       const isValidUser = compareSync(password, user.password.toString());
 
       if (isValidUser) return user;
