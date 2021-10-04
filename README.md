@@ -15,4 +15,4 @@ This project demonstrate following things:
 <li>Guards</li>
 </ul>
 
-### Thanks to @phatvo21 for his valuable suggestions and code refactoring
+### Thanks to <a href="https://github.com/phatvo21">@phatvo21</a> for his valuable suggestions and code refactoring
