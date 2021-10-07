@@ -21,7 +21,7 @@ import { databaseEnvironment } from 'src/config/environment/database.environment
       },
       cache: true,
     }),
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot(databaseEnvironment()),
   ],
   controllers: [],
   providers: [],

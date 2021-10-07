@@ -6,9 +6,9 @@ export const validationSchema = Joi.object({
     .valid('development', 'staging', 'production')
     .default('development'),
   PORT: Joi.number().required().default(3000),
-  TYPEORM_CONNECTION: Joi.string().required(),
-  TYPEORM_HOST: Joi.string().required(),
-  TYPEORM_USERNAME: Joi.string().required(),
-  TYPEORM_PASSWORD: Joi.string().required(),
-  TYPEORM_DATABASE: Joi.string().required(),
+  DATABASE_CONNECTION: Joi.string().required(),
+  DATABASE_HOST: Joi.string().required(),
+  DATABASE_USERNAME: Joi.string().required(),
+  DATABASE_PASSWORD: Joi.string().required(),
+  DATABASE_DATABASE: Joi.string().required(),
 });
